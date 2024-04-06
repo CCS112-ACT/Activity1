@@ -55,4 +55,18 @@ const App = () => {
   );
 };
 
+const Cart = ({ items }) => {
+  return (
+    <div>
+      <h2>Cart Summary</h2>
+      {items.map(item => (
+        <div key={item.id}>
+          <p>{item.name} - ${item.price}</p>
+        </div>
+      ))}
+      <p>Total: ₱{items.reduce((acc, item) => acc + item.price, 0)}</p>
+    </div>
+  );
+};
+
 export default App;
