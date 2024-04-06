@@ -22,6 +22,19 @@ function App() {
   );
 }
 
+const Product = ({ product, onAddToCart }) => {
+  const { name, description, price } = product;
+
+  return (
+    <div>
+      <h2>{name}</h2>
+      <p>{description}</p>
+      <p>Price: ₱{price}</p>
+      <button onClick={() => onAddToCart(product)}>Add to Cart</button>
+    </div>
+  );
+};
+
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
 
