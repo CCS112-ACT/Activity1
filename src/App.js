@@ -1,4 +1,12 @@
+import React, { useState } from 'react';
 
+const products = [
+  { id: 1, name: 'Shampoo', description: 'Cleans and nourishes your hair for a refreshing wash', price: 10 },
+  { id: 2, name: 'Toothbrush', description: 'Keep your smile bright and healthy with our premium toothbrush', price: 15 },
+  { id: 3, name: 'Shower Gel', description: 'Invigorate your senses with our luxurious shower gel', price: 20 },
+  { id: 4, name: 'Conditioner', description: 'Achieve silky smooth hair with our revitalizing conditioner', price: 13 },
+  { id: 5, name: 'Face Wash', description: 'Gently cleanse and rejuvenate your skin with our refreshing face wash', price: 50 }, 
+]
 
 const Product = ({ product, onAddToCart }) => {
   const { name, description, price } = product;
