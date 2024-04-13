@@ -49,7 +49,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>E-Commerce Website</h1>
+      <h1>Shopping Cart Website</h1>
       <div>
         {products.map(product => (
           <Product key={product.id} product={product} onAddToCart={addToCart} />
