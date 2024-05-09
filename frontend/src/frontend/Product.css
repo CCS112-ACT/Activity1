@@ -1,0 +1,64 @@
+.product-container {
+    background: linear-gradient(90deg, rgb(202, 202, 202) 0%, rgba(0,0,0,1) 100%);
+    border-radius: 10px;
+    padding: 20px;
+    color: #fff; /* Set text color to white for better visibility */
+}
+
+.product-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000; /* Set text color to white */
+}
+
+.product-category, .product-price {
+    font-size: 18px;
+    color: #000000; /* Set text color to light gray */
+}
+
+.product-quantity {
+    margin-bottom: 10px;
+}
+
+.product-quantity label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000000; /* Set text color to white */
+}
+
+.product-quantity-input {
+    width: 70px;
+}
+
+.product-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.product-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Increase size on hover */
+}
+
+
+.product-details-container {
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.product-details-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000000; /* Set text color to white */
+}
+
+.product-details-description {
+    font-size: 16px;
+    color: #000000; /* Set text color to light gray */
+}
