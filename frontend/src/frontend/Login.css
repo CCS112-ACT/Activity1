@@ -1,0 +1,24 @@
+.login-form {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+.login-form h4 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.login-form h6 {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.login-form .btn {
+    background-color: #828383;
+    border-color: #000000;
+}
+
+.login-form .btn:hover {
+    background-color: #363636;
+    border-color: #000000;
+}
