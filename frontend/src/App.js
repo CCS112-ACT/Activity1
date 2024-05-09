@@ -1,65 +1,55 @@
-
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import './styles/App.css';
-import Home from './components/Home';
-import ProductList from './components/ProductList';
-import Cart from './components/Cart';
-import ViewCart from './components/ViewCart';
+import './App.css';
+import './assets/style.css';
+import React, {useState, useEffect} from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from './frontend/Home';
+import Header from './frontend/includes/Header';
+import Login from './frontend/Login';
+import Registration from './frontend/Registration';
+import CartList from './frontend/CartList';
+import Product from './frontend/Product';
+import OrderSuccessMassage from './frontend/OrderSuccessMassage';
+import Logout from './frontend/Logout';
 
 function App() {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(0);
+  const [searchData, setSearchData] = useState([]);
+  let user = JSON.parse(localStorage.getItem('user-info'));
+  let userId =  user ? user.id : '';
+  
+  function userUpdate() {
+    user = JSON.parse(localStorage.getItem('user-info'));
+    userId =  user ? user.id : '';
+  }
+  useEffect( ()=>{
+    cartItems();
+  },[]);
 
-  const addToCart = (product) => {
-    setCart([...cart, { ...product, quantity: 1 }]);
-  };
+  async function cartItems(){
+    let result =await fetch('http://127.0.0.1:8000/api/cartitem/'+userId);
+    result= await result.json();
+    setCart(result);
+  }
 
-  const removeFromCart = (index) => {
-    const newCart = [...cart];
-    newCart.splice(index, 1);
-    setCart(newCart);
-  };
-
-  const incrementQuantity = (index) => {
-    const newCart = [...cart];
-    newCart[index].quantity++;
-    setCart(newCart);
-  };
-
-  const decrementQuantity = (index) => {
-    const newCart = [...cart];
-    if (newCart[index].quantity > 1) {
-      newCart[index].quantity--;
-      setCart(newCart);
-    }
-  };
-
+  function emptyCart(){
+    setCart(0);
+  }
+  
   return (
-    <Router>
-      <div className="container">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link className="nav-link text-dark" to="/">HOMEPAGE</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-dark" to="/products">STORE</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-dark" to="/cart">MY CART</Link>
-            </li>
-          </ul>
-        </nav>
+    <BrowserRouter> {console.log(searchData)}
+      <Header items={cart} setSearchData={setSearchData} />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductList addToCart={addToCart} />} />
-          <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity} />} />
-          <Route path="/viewcart" element={<ViewCart cart={cart} removeFromCart={removeFromCart} />} /> {}
+          <Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/cartlist" element={<CartList cartItem={cartItems}/>} />
+            <Route path="/login" element={<Login cartItem={cartItems} userUpdate={userUpdate} />} />
+            <Route path="/register" element={<Registration />} />
+            <Route path="/product/:id" element={<Product cartItem={cartItems} />} />
+            <Route path="/massage" element={<OrderSuccessMassage />} />
+            <Route path="/logout" element={<Logout emptyCart={emptyCart} />} />
+          </Route>
         </Routes>
-      </div>
-    </Router>
-
+    </BrowserRouter>
   );
 }
-
 export default App;
